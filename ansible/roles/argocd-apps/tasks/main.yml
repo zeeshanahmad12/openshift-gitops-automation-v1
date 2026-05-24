@@ -1,0 +1,68 @@
+- name: ArgoCD Dev App banao
+  command: oc apply -f -
+  args:
+    stdin: |
+      apiVersion: argoproj.io/v1alpha1
+      kind: Application
+      metadata:
+        name: myapp-dev
+        namespace: argocd
+      spec:
+        project: default
+        source:
+          repoURL: {{ github_repo }}
+          targetRevision: HEAD
+          path: manifests/overlays/dev
+        destination:
+          server: https://kubernetes.default.svc
+          namespace: myapp-dev
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
+
+- name: ArgoCD Staging App banao
+  command: oc apply -f -
+  args:
+    stdin: |
+      apiVersion: argoproj.io/v1alpha1
+      kind: Application
+      metadata:
+        name: myapp-staging
+        namespace: argocd
+      spec:
+        project: default
+        source:
+          repoURL: {{ github_repo }}
+          targetRevision: HEAD
+          path: manifests/overlays/staging
+        destination:
+          server: https://kubernetes.default.svc
+          namespace: myapp-staging
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
+
+- name: ArgoCD Prod App banao
+  command: oc apply -f -
+  args:
+    stdin: |
+      apiVersion: argoproj.io/v1alpha1
+      kind: Application
+      metadata:
+        name: myapp-prod
+        namespace: argocd
+      spec:
+        project: default
+        source:
+          repoURL: {{ github_repo }}
+          targetRevision: HEAD
+          path: manifests/overlays/prod
+        destination:
+          server: https://kubernetes.default.svc
+          namespace: myapp-prod
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true

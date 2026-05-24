@@ -1,0 +1,6 @@
+bases:
+  - ../../base
+namespace: myapp-dev
+images:
+  - name: zeeshanahmad12/myapp
+    newTag: dev

@@ -1,0 +1,6 @@
+bases:
+  - ../../base
+namespace: myapp-prod
+images:
+  - name: zeeshanahmad12/myapp
+    newTag: latest

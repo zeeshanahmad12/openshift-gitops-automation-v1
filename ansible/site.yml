@@ -1,0 +1,7 @@
+- name: OpenShift GitOps Setup
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - openshift-setup
+    - argocd-install
+    - argocd-apps

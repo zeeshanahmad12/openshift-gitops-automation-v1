@@ -1,0 +1,4 @@
+namespaces:
+  - myapp-dev
+  - myapp-staging
+  - myapp-prod

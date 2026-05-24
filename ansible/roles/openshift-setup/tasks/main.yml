@@ -1,0 +1,13 @@
+- name: Namespaces banao
+  command: oc new-project {{ item }}
+  loop: "{{ namespaces }}"
+  ignore_errors: yes
+
+- name: Dev namespace label karo
+  command: oc label namespace myapp-dev environment=dev --overwrite
+
+- name: Staging namespace label karo
+  command: oc label namespace myapp-staging environment=staging --overwrite
+
+- name: Prod namespace label karo
+  command: oc label namespace myapp-prod environment=prod --overwrite
