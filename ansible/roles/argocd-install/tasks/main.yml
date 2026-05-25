@@ -3,10 +3,10 @@
   ignore_errors: yes
 
 - name: ArgoCD install karo
-  command: oc apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+  command: oc apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --server-side --force-conflicts
 
 - name: ArgoCD ready hone ka wait karo
-  command: oc wait --for=condition=available deployment/argocd-server -n argocd --timeout=300s
+  command: oc wait --for=condition=available deployment/argocd-server -n argocd --timeout=600s
 
 - name: ArgoCD route expose karo
   command: oc expose service argocd-server -n argocd
